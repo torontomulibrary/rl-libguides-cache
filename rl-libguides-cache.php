@@ -63,8 +63,6 @@ register_activation_hook(   __FILE__, 'rl_libguides_cache_activate' );
 register_deactivation_hook( __FILE__, 'rl_libguides_cache_deactivate' );
 register_uninstall_hook(    __FILE__, 'rl_libguides_cache_uninstall' );
 
-
-
 function rl_libguides_cache_get_api_client() {
   if ( !get_option('rl_libguides_cache-site_id') || !get_option('rl_libguides_cache-api_key') ) {
     return false;
@@ -110,7 +108,7 @@ function rl_libguides_cache_update_accounts() {
       $account->profile->url 
     );
   }
-
+  rl_libguides_cache_truncate_table('accounts');
   return rl_libguides_cache_update_table('accounts', $columns, $data);
 }
 
@@ -152,7 +150,7 @@ function rl_libguides_cache_update_subjects() {
   foreach ($subjects as $subject) {
     $data[] = array( $subject->id, $subject->name );
   }
-
+  rl_libguides_cache_truncate_table('subjects');
   return rl_libguides_cache_update_table('subjects', $columns, $data);
 }
 
@@ -203,12 +201,20 @@ function rl_libguides_cache_get_subjects_list() {
   return $subjects_list;
 }
 
-/* Schedule WP Cron to execute our update functions periodically */
-add_action( 'rl_libguides_cache_cron_hook', 'rl_libguides_cache_cron_exec' );
-function rl_libguides_cache_cron_exec() {
+/* WP Cron hook to execute our update functions periodically */
+add_action( 'rl_libguides_cache_cron_hook', 'rl_libguides_cache_refresh' );
+function rl_libguides_cache_refresh() {
   rl_libguides_cache_update_subjects();
   rl_libguides_cache_update_accounts();
   rl_libguides_cache_update_relation_accounts_subjects();
+}
+
+/* wp_ajax action */
+add_action( 'wp_ajax_rl_libguides_cache_refresh', 'rl_libguides_cache_ajax_refresh' );
+function rl_libguides_cache_ajax_refresh() {
+  rl_libguides_cache_refresh();
+  echo 'Refreshing cache ...';
+  wp_die();
 }
 
 /* Add admin notice */
