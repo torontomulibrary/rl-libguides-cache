@@ -2,11 +2,11 @@
 defined( 'ABSPATH' ) OR exit;
 /*
  * Plugin Name: LibGuides Cache
- * Plugin URI: https://github.com/ryersonlibrary/rl_libguides_cache
+ * Plugin URI: https://github.com/ryersonlibrary/rl-libguides-cache
  * Author: Ryerson University Library & Archives
  * Author URI: https://github.com/ryersonlibrary
  * Description: Periodically cache data from LibGuides to be used inside WordPress.
- * GitHub Plugin URI: https://github.com/ryersonlibrary/rl_libguides_cache
+ * GitHub Plugin URI: https://github.com/ryersonlibrary/rl-libguides-cache
  * Version: 0.0.1
  */
 
