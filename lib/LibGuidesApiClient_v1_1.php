@@ -1,24 +1,4 @@
 <?php 
-if ( !function_exists('rl_curl_get') ) {
-  function rl_curl_get($url) {
-    // Get cURL resource
-    $curl = curl_init();
-
-    // Set some options - we are passing in a useragent too here
-    curl_setopt_array($curl, [
-      CURLOPT_RETURNTRANSFER => true,
-      CURLOPT_URL => $url,
-      CURLOPT_USERAGENT => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0'
-    ]);
-    
-    $response = curl_exec($curl);
-
-    curl_close($curl);
-
-    return $response;
-  }
-}
-
 class LibGuidesApiClient_v1_1 {
   private $base_url = 'https://lgapi-ca.libapps.com';
   private $version = '1.1';
@@ -68,6 +48,8 @@ class LibGuidesApiClient_v1_1 {
 
     $request_url = $this->build_request_url($endpoint, $options);
 
-    return rl_curl_get($request_url);
+    $response = wp_remote_get( $request_url );
+
+    return wp_remote_retrieve_body( $response );
   }
 }
