@@ -1,7 +1,7 @@
 <?php
 require_once 'shortcode-helpers.php';
 
-//[rl_subject_librarians]
+// [rl_subject_librarians]
 function rl_libguides_cache_subject_librarians_shortcode( $atts ){
   $subjects_list = rl_libguides_cache_get_subjects_list();
   

@@ -26,9 +26,12 @@ function rl_libguides_cache_render_options_page_callback() { ?>
       submit_button(); 
       ?>
     </form>
+
     <h2>Refresh Cache</h2>
     <button id="rl-libguides-cache-refresh-cache-button" class="button button-primary">Click to refresh cache</button>
   </div>
+
+  <?php rl_libguides_cache_check_for_empty_subjects(); ?>
   
   <script>
   jQuery(function() {
@@ -127,4 +130,20 @@ function rl_libguides_cache_api_key_callback( $args ) {
   <input type="text" id="{$setting_id}" name="{$setting_id}" value="{$setting_value}" />
   <p class="description">{$args[0]}</p>  
 setting_html;
+}
+
+function rl_libguides_cache_check_for_empty_subjects() {
+  global $wpdb;  
+  $subjects_table = $wpdb->prefix . "libguides_cache_subjects"; 
+  $relation_accounts_subjects_table = $wpdb->prefix . "libguides_cache_relation_accounts_subjects"; 
+  
+  $results = $wpdb->get_results( "SELECT name FROM {$subjects_table} WHERE id NOT IN (SELECT subject_id FROM {$relation_accounts_subjects_table});" );
+
+  if ( count($results) > 0 ) {
+    echo "<pre>The following subjects do not have a profile associated with it: \n";
+    foreach ( $results as $subject ) {
+      echo " - "; print_r( $subject->name ); echo "\n";
+    }
+    echo "</pre>";
+  }
 }
