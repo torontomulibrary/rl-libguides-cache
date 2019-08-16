@@ -4,8 +4,8 @@
  */
 function rl_libguides_cache_add_options_page() {
   add_options_page(
-    __( 'LibGuides Cache Settings', 'rl_libguides_cache' ),
-    __( 'LibGuides Cache Settings', 'rl_libguides_cache' ),
+    __( 'LibGuides Cache', 'rl_libguides_cache' ),
+    __( 'LibGuides Cache', 'rl_libguides_cache' ),
     'manage_options',
     'rl_libguides_cache',
     'rl_libguides_cache_render_options_page_callback'
@@ -16,8 +16,9 @@ add_action( 'admin_menu', 'rl_libguides_cache_add_options_page' );
 /**
  * Callback function to render custom options page.
  */
-function rl_libguides_cache_render_options_page_callback() {
-  ?>
+function rl_libguides_cache_render_options_page_callback() { ?> 
+  <div id="rl-libguides-cache-settings" class="wrap">
+    <h1>LibGuides Cache Plugin</h1>
     <form method="POST" action="options.php">
       <?php 
       settings_fields( 'rl_libguides_cache' );
@@ -25,19 +26,40 @@ function rl_libguides_cache_render_options_page_callback() {
       submit_button(); 
       ?>
     </form>
-  <?php
-}
+    <h2>Refresh Cache</h2>
+    <button id="rl-libguides-cache-refresh-cache-button" class="button button-primary">Click to refresh cache</button>
+  </div>
+  
+  <script>
+  $(function() {
+    $('#rl-libguides-cache-refresh-cache-button').on('click', function() {
+      $_this = $(this);
+      $_this.attr("disabled", true);
+      jQuery.post(
+        "/wp-admin/admin-ajax.php", 
+        {
+          'action': 'rl_libguides_cache_refresh'
+        }, 
+        function(response) {
+          $_this.attr("disabled", false);
+          console.log('The server responded: ', response);
+        },
+      )
+    });
+  });
+  </script>
+<?php }
 
 /**
  * Register and initialize settings for the plugin.
  */
 function rl_libguides_cache_settings_init() {
-  $settings_section = 'rl_libguides_cache-main';
+  $settings_section = 'rl_libguides_cache-api';
   $settings_page = 'rl_libguides_cache';
 
   add_settings_section(
     $settings_section,
-    'Settings for LibGuides Cache plugin',
+    'API Settings',
     'rl_libguides_cache_settings_section_main_callback',
     $settings_page
   );
