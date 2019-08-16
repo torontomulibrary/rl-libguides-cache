@@ -31,9 +31,9 @@ function rl_libguides_cache_render_options_page_callback() { ?>
   </div>
   
   <script>
-  $(function() {
-    $('#rl-libguides-cache-refresh-cache-button').on('click', function() {
-      $_this = $(this);
+  jQuery(function() {
+    jQuery('#rl-libguides-cache-refresh-cache-button').on('click', function() {
+      $_this = jQuery(this);
       $_this.attr("disabled", true);
       jQuery.post(
         "/wp-admin/admin-ajax.php", 
