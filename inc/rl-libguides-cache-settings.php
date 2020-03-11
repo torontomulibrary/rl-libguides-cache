@@ -119,7 +119,7 @@ function rl_libguides_cache_site_id_callback( $args ) {
   $setting_value = esc_attr( get_option( 'rl_libguides_cache-site_id' ) );
   echo <<<setting_html
   <input type="text" id="{$setting_id}" name="{$setting_id}" value="{$setting_value}" />
-  <p class="description">{$args[0]}</p>  
+  <p class="description"></p>  
 setting_html;
 }
 
@@ -128,7 +128,7 @@ function rl_libguides_cache_api_key_callback( $args ) {
   $setting_value = esc_attr( get_option( 'rl_libguides_cache-api_key' ) );
   echo <<<setting_html
   <input type="text" id="{$setting_id}" name="{$setting_id}" value="{$setting_value}" />
-  <p class="description">{$args[0]}</p>  
+  <p class="description"></p>  
 setting_html;
 }
 
