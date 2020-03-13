@@ -41,7 +41,7 @@ function rl_libguides_cache_render_options_page_callback() { ?>
       jQuery.post(
         "/wp-admin/admin-ajax.php", 
         {
-          'action': 'rl_libguides_cache_refresh'
+          'action': 'rylib_lg_cache_refresh'
         }, 
         function(response) {
           $_this.attr("disabled", false);
