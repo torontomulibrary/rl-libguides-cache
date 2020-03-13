@@ -48,7 +48,6 @@ function rl_libguides_cache_uninstall() {
   global $rylib_lg_cache_wpdb;
   $rylib_lg_cache_wpdb->drop_tables_from_schema();
 
-  delete_option( 'rl_libguides_cache-db_version' );
   delete_option( 'rl_libguides_cache-site_id' );
   delete_option( 'rl_libguides_cache-api_key' );
 }
@@ -82,7 +81,6 @@ add_action( 'admin_notices', 'rylib_lg_cache_activation_notice' );
  * @since 0.0.1
  */
 function rylib_lg_cache_activation_notice() {
-  global $rl_libguides_cache_db_version;
   /* Check transient, if available display notice */
   if( get_transient( 'rylib_lg_cache_activation_notice' ) ){
     ?>
