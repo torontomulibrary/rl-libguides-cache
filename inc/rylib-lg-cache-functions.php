@@ -1,15 +1,8 @@
 <?php
+require_once 'helpers.php';
+
 // Include the LibGuides API client
 require_once plugin_dir_path( __DIR__ ).'classes/class-lg-v1_1-client.php';
-
-// Include rylib-wpdb-table-interface
-require_once plugin_dir_path( __DIR__ ).'classes/class-rylib-wpdb-interface.php';
-
-// Include the database
-require_once plugin_dir_path( __DIR__ ).'inc/rylib-lg-cache-db.php';
-
-// Include helpers
-require_once plugin_dir_path( __DIR__ ).'inc/helpers.php';
 
 // Set up the LibGuides API client
 function rylib_lg_cache_get_lg_client() {

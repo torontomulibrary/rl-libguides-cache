@@ -7,17 +7,20 @@ defined( 'ABSPATH' ) OR exit;
  * Author URI: https://github.com/ryersonlibrary
  * Description: Periodically cache data from LibGuides to be used inside WordPress. Provides the [subject_librarians_list] and [databases_by_subject_dropdown] shortcodes.
  * GitHub Plugin URI: https://github.com/ryersonlibrary/rl-libguides-cache
- * Version: 0.1.4
+ * Version: 0.1.5
  */
 
  // Include our custom settings page for the plugin
 require_once plugin_dir_path( __FILE__ ).'/inc/rylib-lg-cache-settings.php';
 
-// Include our shortcodes
-require_once plugin_dir_path( __FILE__ ).'/inc/rylib-lg-cache-shortcodes.php';
+// Include database
+require_once plugin_dir_path( __FILE__ ).'inc/rylib-lg-cache-db.php';
 
-// Include database and functions
+// Include functions
 require_once plugin_dir_path( __FILE__ ).'/inc/rylib-lg-cache-functions.php';
+
+// Include shortcodes
+require_once plugin_dir_path( __FILE__ ).'/inc/rylib-lg-cache-shortcodes.php';
 
 function rl_libguides_cache_activate() {
   global $rylib_lg_cache_wpdb;

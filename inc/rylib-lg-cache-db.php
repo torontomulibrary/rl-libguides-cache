@@ -1,4 +1,7 @@
 <?php
+// Include Rylib_WPDB_Interface class
+require_once plugin_dir_path( __DIR__ ) . 'classes/class-rylib-wpdb-interface.php';
+
 global $rylib_lg_cache_wpdb;
 
 // Our table schema
