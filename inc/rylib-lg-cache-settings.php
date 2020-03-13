@@ -134,8 +134,8 @@ setting_html;
 
 function rl_libguides_cache_check_for_empty_subjects() {
   global $wpdb;  
-  $subjects_table = $wpdb->prefix . "libguides_cache_subjects"; 
-  $relation_accounts_subjects_table = $wpdb->prefix . "libguides_cache_relation_accounts_subjects"; 
+  $subjects_table = $wpdb->prefix . "rylib_lg_cache_subjects"; 
+  $relation_accounts_subjects_table = $wpdb->prefix . "rylib_lg_cache_relation_accounts_subjects"; 
   
   $results = $wpdb->get_results( "SELECT name FROM {$subjects_table} WHERE id NOT IN (SELECT subject_id FROM {$relation_accounts_subjects_table});" );
 
