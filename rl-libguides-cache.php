@@ -7,7 +7,7 @@ defined( 'ABSPATH' ) OR exit;
  * Author URI: https://github.com/ryersonlibrary
  * Description: Periodically cache data from LibGuides to be used inside WordPress.
  * GitHub Plugin URI: https://github.com/ryersonlibrary/rl-libguides-cache
- * Version: 0.1.1
+ * Version: 0.1.2
  */
 
  // Include our custom settings page for the plugin

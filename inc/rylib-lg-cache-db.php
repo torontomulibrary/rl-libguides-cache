@@ -1,5 +1,5 @@
 <?php
-global $rylib_lg_cache_wpdb, $rylib_lg_cache_tables;
+global $rylib_lg_cache_wpdb;
 
 // Our table schema
 $rylib_lg_cache_tables = array(
