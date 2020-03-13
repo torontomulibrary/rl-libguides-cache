@@ -7,7 +7,7 @@ defined( 'ABSPATH' ) OR exit;
  * Author URI: https://github.com/ryersonlibrary
  * Description: Periodically cache data from LibGuides to be used inside WordPress. Provides the [subject_librarians_list] and [databases_by_subject_dropdown] shortcodes.
  * GitHub Plugin URI: https://github.com/ryersonlibrary/rl-libguides-cache
- * Version: 0.1.5
+ * Version: 0.1.6
  */
 
  // Include our custom settings page for the plugin
@@ -39,11 +39,6 @@ function rl_libguides_cache_deactivate() {
   // Only uninstall the cron hook on deactivation
   $timestamp = wp_next_scheduled( 'rylib_lg_cache_cron' );
   wp_unschedule_event( $timestamp, 'rylib_lg_cache_cron' );
-
-  // DEBUG
-  global $rylib_lg_cache_wpdb;
-  $rylib_lg_cache_wpdb->drop_tables_from_schema();
-  // END DEBUG
 }
 
 function rl_libguides_cache_uninstall() {
