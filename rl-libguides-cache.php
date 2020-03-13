@@ -7,7 +7,7 @@ defined( 'ABSPATH' ) OR exit;
  * Author URI: https://github.com/ryersonlibrary
  * Description: Periodically cache data from LibGuides to be used inside WordPress.
  * GitHub Plugin URI: https://github.com/ryersonlibrary/rl-libguides-cache
- * Version: 0.1.0
+ * Version: 0.1.1
  */
 
  // Include our custom settings page for the plugin
@@ -62,9 +62,10 @@ register_uninstall_hook(    __FILE__, 'rl_libguides_cache_uninstall' );
 /* WP Cron hook to update the cache periodically */
 add_action( 'rylib_lg_cache_cron', 'rylib_lg_cache_refresh' );
 function rylib_lg_cache_refresh() {
-  rylib_lg_cache_fetch_subjects_data();
   rylib_lg_cache_fetch_accounts_data();
+  rylib_lg_cache_fetch_subjects_data();
   rylib_lg_cache_fetch_relation_accounts_subjects_data();
+  rylib_lg_cache_fetch_databases_data();
 }
 
 /* wp_ajax rylib_lg_cache_refresh action */
