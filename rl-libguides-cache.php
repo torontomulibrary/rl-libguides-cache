@@ -5,9 +5,9 @@ defined( 'ABSPATH' ) OR exit;
  * Plugin URI: https://github.com/ryersonlibrary/rl-libguides-cache
  * Author: Ryerson University Library & Archives
  * Author URI: https://github.com/ryersonlibrary
- * Description: Periodically cache data from LibGuides to be used inside WordPress.
+ * Description: Periodically cache data from LibGuides to be used inside WordPress. Provides the [subject_librarians_list] and [databases_by_subject_dropdown] shortcodes.
  * GitHub Plugin URI: https://github.com/ryersonlibrary/rl-libguides-cache
- * Version: 0.1.3
+ * Version: 0.1.4
  */
 
  // Include our custom settings page for the plugin
