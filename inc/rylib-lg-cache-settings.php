@@ -32,6 +32,7 @@ function rl_libguides_cache_render_options_page_callback() { ?>
   </div>
 
   <?php rl_libguides_cache_check_for_empty_subjects(); ?>
+  <?php // rl_libguides_cache_debug(); ?>
   
   <script>
   jQuery(function() {
@@ -39,7 +40,7 @@ function rl_libguides_cache_render_options_page_callback() { ?>
       $_this = jQuery(this);
       $_this.attr("disabled", true);
       jQuery.post(
-        "/wp-admin/admin-ajax.php", 
+        ajaxurl, 
         {
           'action': 'rylib_lg_cache_refresh'
         }, 
@@ -146,4 +147,19 @@ function rl_libguides_cache_check_for_empty_subjects() {
     }
     echo "</pre>";
   }
+}
+
+function rl_libguides_cache_debug() {
+  if ( !$lg_client = rylib_lg_cache_get_lg_client() ) { return false; }
+  global $wpdb;  
+  $subjects_table = $wpdb->prefix . "rylib_lg_cache_subjects"; 
+  $results = $wpdb->get_results( "SELECT name FROM {$subjects_table};" );
+
+  echo "<pre>Subjects Table Name: $subjects_table</pre>";
+
+  echo "<pre>Subjects: \n";
+  foreach ( $results as $subject ) {
+    echo " - "; print_r( $subject->name ); echo "\n";
+  }
+  echo "</pre>";
 }
