@@ -88,7 +88,7 @@ function rylib_lg_cache_dbs_by_subject_dropdown_shortcode( $atts = [] ) {
   $html .= "</option>";
 
   foreach ( $subjects_list as $s ) {
-    $value = "https://learn.library.ryerson.ca/az.php?s={$s['id']}";
+    $value = "https://learn.library.torontomu.ca/az.php?s={$s['id']}";
     if ($articles_filter) { $value .= '&t=16691'; }
     $html .= "<option value=\"{$value}\">{$s['name']}</option>";
   }
